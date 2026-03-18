@@ -109,6 +109,23 @@
                 visibility: hidden;
                 opacity: 0;
             }
+
+            #successmsg {
+                display: none;
+                background-color: #d4edda;
+                border: 1px solid #c3e6cb;
+                color: #155724;
+                border-radius: 6px;
+                padding: 15px 20px;
+                margin: 15px 20px;
+                font-size: 15px;
+            }
+
+            #successmsg .checkmark {
+                font-size: 40px;
+                display: block;
+                margin-bottom: 8px;
+            }
             
         </style>
     </head>
@@ -116,12 +133,16 @@
         
         
         <form class='form-signin bg-light shadow-lg' id='form1'>
-            <div class='heading text-left '>
+             <div class='heading text-left '>
                 <img src='6DC1270E-802C-4E8D-93A4-51DA9AC96EF0.jpeg' class='image1 img-responsive mb-2'>
                 <h6><b>DITTA CALLARI SALVATORE</b></h6>
                 <h6><b>VIA ELIO VITTORINI 34 93014 MUSSOMELI CL IT</b></h6>
                 <h6>Tel: <b></b></h6>
                 <h6>E-mail: <b>info.csfrigoservice@virgilio.it</b></h6>
+            </div>
+            <div class='div1 p-3'>
+                <h4><b>RICHIESTA CANCELLAZIONE ACCOUNT</b></h4>
+                <p>Inserisci qui email e password per inviare la richiesta di cancellazione account che averrà nelle prossime 48 ore.</p>
             </div>
             <div class='div1 p-3'>
                 <h4><b>RICHIESTA CANCELLAZIONE ACCOUNT</b></h4>
@@ -136,6 +157,12 @@
             <div id='loginerror' class='mt-1'>
                 <p></p>
             </div>
+
+            <div id='successmsg'>
+                <span class='checkmark'>✅</span>
+                <strong>Richiesta inviata con successo!</strong><br>
+                Riceverai un'email di conferma entro <strong>48 ore</strong>.
+            </div>
         </form>
         
 
@@ -144,7 +171,7 @@
         </div>
         
         	
-    </body>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
 <script type='text/javascript' language='javascript'>
 	function resetFields() {
@@ -185,7 +212,17 @@
 				},
 
 				error: function () {
-					alert('Richiesta inviata con successo, riceverai un email di avvenuta eliminazione entro 48 ore.');
+					$('#email').val('');
+					$('#psw').val('');
+					$('#login').hide();
+					$('#successmsg').fadeIn(600);
+				},
+
+				error: function () {
+					$('#email').val('');
+					$('#psw').val('');
+					$('#login').hide();
+					$('#successmsg').fadeIn(600);
 				},
 			});
 		});
@@ -219,10 +256,14 @@
 				},
 
 				error: function () {
-					alert('Richiesta inviata con successo, riceverai un email di avvenuta eliminazione entro 48 ore.');
+					$('#email').val('');
+					$('#psw').val('');
+					$('#login').hide();
+					$('#successmsg').fadeIn(600);
 				},
 			});
 		});
 
 	});
 </script>
+</html>
