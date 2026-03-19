@@ -92,6 +92,16 @@
                 visibility: hidden;
                 opacity: 0;
             }
+            #fielderror {
+                display: none;
+                background-color: #fff3cd;
+                border: 1px solid #ffc107;
+                color: #856404;
+                border-radius: 6px;
+                padding: 10px 15px;
+                margin: 10px 20px;
+                font-size: 14px;
+            }
             #confirmstep {
                 display: none;
                 padding: 20px;
@@ -162,6 +172,10 @@
                 <p></p>
             </div>
 
+            <div id='fielderror'>
+                ⚠️ Inserisci email e password prima di procedere.
+            </div>
+
             <div id='confirmstep'>
                 <span class='warning-icon'>⚠️</span>
                 <p>Sei sicuro di voler eliminare questo account?</p>
@@ -170,9 +184,9 @@
             </div>
 
             <div id='successmsg'>
-                <span class='checkmark'></span>
+                <span class='checkmark'>✅</span>
                 <strong>Richiesta inviata con successo!</strong><br>
-                Riceverai un'email di avvenuta conferma entro <strong>48 ore</strong>.
+                Riceverai un'email di conferma entro <strong>48 ore</strong>.
             </div>
         </form>
 
@@ -225,9 +239,10 @@
                 $('#login').click(function (e) {
                     e.preventDefault();
                     if ($('#email').val() === '' || $('#psw').val() === '') {
-                        alert('Inserisci email e password prima di procedere.');
+                        $('#fielderror').fadeIn(300);
                         return;
                     }
+                    $('#fielderror').hide();
                     $('#loginerror').css({'visibility': 'hidden', 'opacity': 0});
                     $('#email, #psw, #login').hide();
                     $('.div1').hide();
@@ -237,9 +252,10 @@
                 $('#form1').submit(function (e) {
                     e.preventDefault();
                     if ($('#email').val() === '' || $('#psw').val() === '') {
-                        alert('Inserisci email e password prima di procedere.');
+                        $('#fielderror').fadeIn(300);
                         return;
                     }
+                    $('#fielderror').hide();
                     $('#loginerror').css({'visibility': 'hidden', 'opacity': 0});
                     $('#email, #psw, #login').hide();
                     $('.div1').hide();
